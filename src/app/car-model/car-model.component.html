@@ -5,7 +5,7 @@
 	</mat-form-field>
 	
 	<mat-form-field >
-		<mat-label>Favorite food</mat-label>
+		<mat-label>Manufacturer Name</mat-label>
 		<mat-select>
 			<mat-option *ngFor="let manufacturer of manufacturers" [value]="manufacturer.id">
 				{{manufacturer.name}}
@@ -28,13 +28,10 @@
 		<textarea matInput placeholder="Note"></textarea>
 	</mat-form-field>
 	
-		<label for="singleFile">Upload file</label>
-		<input id="singleFile" type="file" [fileUploadInputFor]= "fileUploadQueue"/>
-		<br>
-		<mat-file-upload-queue #fileUploadQueue [fileAlias]="'file'" [httpUrl]="'http://localhost:8180/jax-rs-jersey-application-sample'">
-			<mat-file-upload [file]="file" [id]="i" *ngFor="let file of fileUploadQueue.files; let i = index"></mat-file-upload>
-		</mat-file-upload-queue>
+	<button md-raised-button color="primary" (click)="fileInput.click(); $event.preventDefault()">Upload</button>
+	<input hidden type="file" #fileInput (change)="fileChangeEvent($event)">
+	<img id="preview" [src]="imgpreview" alt="Preview">
 	
-	<button mat-button color="primary" (click)="save()">Primary</button>
+	<button mat-button color="primary" (click)="save()">Save</button>
 	
 </form>
